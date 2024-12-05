@@ -1,65 +1,180 @@
-body {
-    font-family: Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap');
+
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Prompt', sans-serif;
+}
+
+body {
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f4f4f9;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    padding: 20px;
+    color: #ffffff;
 }
 
 .container {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
+    background: rgba(28, 28, 28, 0.95);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
     width: 100%;
-    text-align: center;
+    max-width: 400px;
+    transform: translateY(20px);
+    animation: slideUp 0.5s ease forwards;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 h1 {
-    color: #333;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .converter {
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
 }
 
-.converter div {
-    margin-bottom: 15px;
-    text-align: left;
+.converter > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+    color: #b3b3b3;
+    font-size: 0.95rem;
+    font-weight: 500;
 }
 
-input,
-select,
-button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+input, select {
+    padding: 0.8rem 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+select option {
+    background-color: #1c1c1c;
+    color: #ffffff;
 }
 
 button {
-    background-color: #007bff;
+    background: linear-gradient(135deg, #333333 0%, #1a1a1a 100%);
     color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
     cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background: linear-gradient(135deg, #404040 0%, #262626 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+button:active {
+    transform: translateY(0);
 }
 
 .result {
-    margin-top: 20px;
-    font-size: 18px;
-    color: #007bff;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #ffffff;
+    min-height: 40px;
+    padding: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.result.show {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 16px;
+    pointer-events: none;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1.5rem;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    input, select, button {
+        padding: 0.7rem;
+    }
 }
